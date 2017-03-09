@@ -5,11 +5,13 @@ import { CadastroRoutinModule } from './cadastro-routing.module';
 import { LoginComponent } from './../login/login.component';
 
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
     imports: [
         CadastroRoutinModule,
-        CommonModule
+        CommonModule,
+        FormsModule
     ],
      declarations:[
          CadastroUsuarioComponent,

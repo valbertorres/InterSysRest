@@ -1,16 +1,19 @@
+
 <div class="container" >
     <form>
         <!--código de acesso--> 
        <div class="form-group form-group-sm">
-              <label for="razaoSocial" class="control-label col-sm-2">Senha:</label>
+              <label for="senha" class="control-label col-sm-2">Senha:</label>
               <div class="col-sm-4">
             <input type="password" class="form-control" placeholder="Insira uma senha para acesso! " 
-            aria-describedby="sizing-addon3">
+            aria-describedby="sizing-addon3"
+            name="senha">
               </div>
               <!--CNPJ-->
-              <label for="razaoSocial" class="control-label col-sm-2">CNPJ:</label>
+              <label for="cnpj" class="control-label col-sm-2">CNPJ:</label>
               <div class="col-sm-4">
-            <input type="password" class="form-control" placeholder="CNPJ da empresa " aria-describedby="sizing-addon3">
+            <input type="password" class="form-control" placeholder="CNPJ da empresa " aria-describedby="sizing-addon3"
+            name="cpj"[(ngModel)]="usuario.ccpj">
               </div>
             </div>
 
@@ -24,11 +27,11 @@
             
              <!--cep-->
             <div class="form-group form-group-sm">
-              <label for="razaoSocial" class="control-label col-sm-2">CEP:</label>
+              <label for="cep" class="control-label col-sm-2">CEP:</label>
               <div class="col-sm-3">
             <input type="text" class="form-control" placeholder="CEP" aria-describedby="sizing-addon3">
               </div>
-              <label for="razaoSocial" class="control-label col-sm-2">N°:</label>
+              <label for="numero" class="control-label col-sm-2">N°:</label>
               <div class="col-sm-2">
             <input type="password" class="form-control" placeholder="Número" aria-describedby="sizing-addon3">
               </div>
@@ -36,14 +39,14 @@
 
              <!--logradura-->
             <div class="form-group form-group-sm">
-              <label for="razaoSocial" class="control-label col-sm-2">Logradura:</label>
+              <label for="Logradoura" class="control-label col-sm-2">Logradoura:</label>
               <div class="col-sm-3">
-            <input type="password" class="form-control" placeholder="" aria-describedby="sizing-addon3">
+            <input type="password" class="form-control" placeholder="Insirar uma logradoura" aria-describedby="sizing-addon3">
               </div>
               <!--complemento-->
-              <label for="razaoSocial" class="control-label col-sm-2">complemento:</label>
+              <label for="complento" class="control-label col-sm-2">complemento:</label>
               <div class="col-sm-5">
-            <input type="password" class="form-control" placeholder="" aria-describedby="sizing-addon3">
+            <input type="password" class="form-control" placeholder="Complemento..." aria-describedby="sizing-addon3">
               </div>
             </div>
 
@@ -51,28 +54,29 @@
             <div class="form-group form-group-sm">
               <label for="bairro" class="control-label col-sm-2">Bairro:</label>
               <div class="col-sm-10">
-            <input type="password" class="form-control" placeholder="" aria-describedby="sizing-addon3">
+            <input type="password" class="form-control" placeholder="Insira o Bairro..." aria-describedby="sizing-addon3">
               </div>
             </div>
 
             <!--codigo da cidade-->
             <div class="form-group form-group-sm">
-              <label for="razaoSocial" class="control-label col-sm-2">Código da Cidade:</label>
+              <label for="codigo" class="control-label col-sm-2">Código da Cidade:</label>
               <div class="col-sm-2">
-            <input type="text" class="form-control" placeholder="" aria-describedby="sizing-addon3">
+            <input type="text" class="form-control" placeholder="Insira o código da cidade" aria-describedby="sizing-addon3">
               </div>
                <!--Cidade-->
-                <label for="cidade" class="control-label col-sm-2">Cidade:</label>
+                <label for="cidade" class="control-label col-sm-1">Cidade:</label>
                     <div class="col-sm-3">
-                    <input type="text" class="form-control" placeholder="" aria-describedby="sizing-addon3">
+                    <input type="text" class="form-control" placeholder="Insira o 
+                    nome da cidade" aria-describedby="sizing-addon3">
               </div>
                <!--Uf-->
-              <label for="uf" class="control-label col-sm-2">UF:</label>
-              <div class="col-sm-1">
-            <input type="text" class="form-control" placeholder="" aria-describedby="sizing-addon3">
+              <label for="uf" class="control-label col-sm-1">UF:</label>
+              <div class="col-sm-2">
+            <input type="text" class="form-control" placeholder="Uf" aria-describedby="sizing-addon3">
               </div>
             </div>
-    </form>
+    
     <div class="container" id="checkboxCadastro">
         <div class="row" id="divServico" >
         <H6>SERVIÇOS A SEREM COTADOS</H6>
@@ -84,11 +88,84 @@
             <label><input type="checkbox" value="">Analise de Balanço</label>
         </div>
         <div class="row">
-            <label><input type="checkbox" value="">Compartivo Fiscal x Contabil</label>
+            <label><input type="checkbox" value="">Comparativo Fiscal x Contábil</label>
         </div>
         <div class="row">
             <label><input type="checkbox" value="">Todos</label>
         </div>
     </div>
-    
+
+          <div class="well">
+            <label for="data" class="control-label col-sm-2">Periodo de:</label>
+                <div class="input-group date col-sm-3" data-provide="datepicker" id="data1" name="data">
+                    <input type="text" class="form-control">
+                    <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-th"></span>
+                    </div>
+                </div>
+
+                 <label for="data2" class="control-label col-sm-1">à:</label>
+                <div class="input-group date col-sm-3" data-provide="datepicker" id="data2" name="data2">
+                    <input type="text" class="form-control">
+                    <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-th"></span>
+                    </div>
+                </div>
+
+                
+            <script type="text/javascript">
+                    $('#data1').datepicker({
+                    format: 'dd/mm/yyyy'
+                });
+                 $('#data2').datepicker({
+                    format: 'dd/mm/yyyy'
+                });
+              </script>
+          </div>
+          <div class="calt"></div>
+
+    <div class="form-group form-group-sm">
+              <label for="bairro" class="control-label col-sm-5">Número Médio de Notas Emitidas Mensalmente:</label>
+              <div class="col-sm-3">
+            <input type="password" class="form-control" placeholder="" aria-describedby="sizing-addon3">
+              </div>
+            </div>
+
+            
+        
+        <button (click)="get()" class="btn btn-default">btn</button>
+        
+      
+    </form>
 </div>
+
+
+ <table class="table table-small-font table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Descrição</th>
+                <th>Grupo</th>
+                <th>Subgrupo</th>
+                <th>Estoque</th>
+            </tr>    
+        </thead>
+        <tbody id="table">
+            <tr *ngFor = "let p of lista" >
+                 <td>{{ p.ccnpj}}</td>
+                 <td>{{ p.cdenom}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+{{usuario}}
+
+
+
+
+
+
+
+
+

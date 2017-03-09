@@ -1,11 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpModule, JsonpModule } from '@angular/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Cadastromodule } from './cadastroUsuario/cadastro.module';
+
+import { CadastroService } from './cadastroUsuario/cadastro.service';
+
 
 @NgModule({
   declarations: [
@@ -16,9 +19,10 @@ import { Cadastromodule } from './cadastroUsuario/cadastro.module';
     BrowserModule,
     Cadastromodule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    JsonpModule
   ],
-  providers: [],
+  providers: [CadastroService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
