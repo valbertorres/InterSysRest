@@ -1,10 +1,12 @@
 import { Component,OnInit } from '@angular/core';
-import { NKDatetimeModule } from 'ng2-datetime/ng2-datetime';
 
 import { CadastroService } from './cadastro.service';
-import { Usuario } from './cadastro.model';
 import { Observable }       from 'rxjs/Observable';
 import { Location } from '@angular/common';
+
+import { Response } from '@angular/http';
+
+import { Usuario } from './cadastro.model'
 
 
 
@@ -18,34 +20,62 @@ import { Location } from '@angular/common';
     ]
 })
 export class CadastroUsuarioComponent implements OnInit{
+   
    usuario : Usuario[]=[];
-   lista : any[]=[];
+   cadastro : Usuario;
+
     
         constructor(
             private cadastroService : CadastroService,
             private location : Location
-        ){}
-   
-           
+        ){} 
+
         ngOnInit(){
-            this.get();
-            this.getFidAll();
+            this.getCadastro();
         }
 
-        get(){
-           this.cadastroService.getCadastro()
-            .then((cadastro : any[]) =>{
-                this.usuario = cadastro
-                console.log(this.usuario);
-            })
-            .catch(err => console.log(err)
-            )};
-
-            getFidAll(){
-                this.cadastroService.getFindAll();
+            getCadastro(){
+                this.cadastroService.getFindAll()
+                .subscribe(
+                    data => {
+                        const myAray =[];
+                        for(let key in data){
+                            myAray.push(data[key]);
+                        }
+                        this.usuario = myAray;
+                    }
+                )
             }
-}
 
+            getTeste(){
+                return this.cadastroService.getContato()
+                .then((usuario : Usuario[])=>{
+                    const array = [];
+                    for(let key in usuario){
+                        array.push(usuario[key]);
+                    }
+                    this.usuario = array
+                })
+            }
+
+            bustaId(usuario : Usuario):void{
+                this.cadastroService.getFindId(usuario)
+                .then((cadastro :Usuario)=>{
+                    console.log(cadastro)
+                })
+            }
+
+            salva(){
+                
+                this.cadastroService.create(this.usuario)
+                .subscribe(
+                    data => console.log(data),
+                    error => console.error("erro")
+                )
+            }
+
+            
+}
 
 
 

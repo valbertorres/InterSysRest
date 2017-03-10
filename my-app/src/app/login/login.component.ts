@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CadastroUsuarioComponent } from './../cadastroUsuario/cadastro-usuario.component';
 
 @Component({
     moduleId: module.id,
@@ -9,8 +10,13 @@ import { Component, OnInit } from '@angular/core';
     ]
 })
 export class LoginComponent implements OnInit {
+
+    private cad : CadastroUsuarioComponent;
     constructor() { }
 
     ngOnInit() { }
+
+  
+
 }
 

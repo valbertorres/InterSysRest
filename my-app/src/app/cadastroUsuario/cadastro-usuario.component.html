@@ -1,19 +1,21 @@
 
 <div class="container" >
-    <form>
+    <form  #UsuarioForms ="ngForm">
         <!--código de acesso--> 
        <div class="form-group form-group-sm">
               <label for="senha" class="control-label col-sm-2">Senha:</label>
               <div class="col-sm-4">
-            <input type="password" class="form-control" placeholder="Insira uma senha para acesso! " 
+            <input type="password" class="form-control" placeholder="Insira uma senha para acesso!" 
             aria-describedby="sizing-addon3"
-            name="senha">
+            name="senha"
+            [(ngModel)]="usuario.senha"
+            >
               </div>
               <!--CNPJ-->
               <label for="cnpj" class="control-label col-sm-2">CNPJ:</label>
               <div class="col-sm-4">
-            <input type="password" class="form-control" placeholder="CNPJ da empresa " aria-describedby="sizing-addon3"
-            name="cpj"[(ngModel)]="usuario.ccpj">
+            <input type="text" class="form-control" placeholder="CNPJ da empresa " aria-describedby="sizing-addon3"
+            name="cpj" [(ngModel)]="usuario.ccnpj">
               </div>
             </div>
 
@@ -21,7 +23,10 @@
             <div class="form-group form-group-sm">
               <label for="razaoSocial" class="control-label col-sm-2">Razão Social:</label>
               <div class="col-sm-10">
-            <input type="password" class="form-control" placeholder="Razão Social " aria-describedby="sizing-addon3">
+            <input type="text" class="form-control" placeholder="Razão Social " aria-describedby="sizing-addon3"
+            name="cdenom"
+            [(ngModel)]="usuario.cdenom"
+            >
               </div>
             </div>
             
@@ -33,7 +38,7 @@
               </div>
               <label for="numero" class="control-label col-sm-2">N°:</label>
               <div class="col-sm-2">
-            <input type="password" class="form-control" placeholder="Número" aria-describedby="sizing-addon3">
+            <input type="text" class="form-control" placeholder="Número" aria-describedby="sizing-addon3">
               </div>
             </div>
 
@@ -41,12 +46,12 @@
             <div class="form-group form-group-sm">
               <label for="Logradoura" class="control-label col-sm-2">Logradoura:</label>
               <div class="col-sm-3">
-            <input type="password" class="form-control" placeholder="Insirar uma logradoura" aria-describedby="sizing-addon3">
+            <input type="text" class="form-control" placeholder="Insirar uma logradoura" aria-describedby="sizing-addon3">
               </div>
               <!--complemento-->
               <label for="complento" class="control-label col-sm-2">complemento:</label>
               <div class="col-sm-5">
-            <input type="password" class="form-control" placeholder="Complemento..." aria-describedby="sizing-addon3">
+            <input type="text" class="form-control" placeholder="Complemento..." aria-describedby="sizing-addon3">
               </div>
             </div>
 
@@ -54,7 +59,7 @@
             <div class="form-group form-group-sm">
               <label for="bairro" class="control-label col-sm-2">Bairro:</label>
               <div class="col-sm-10">
-            <input type="password" class="form-control" placeholder="Insira o Bairro..." aria-describedby="sizing-addon3">
+            <input type="text" class="form-control" placeholder="Insira o Bairro..." aria-describedby="sizing-addon3">
               </div>
             </div>
 
@@ -130,39 +135,29 @@
             <input type="password" class="form-control" placeholder="" aria-describedby="sizing-addon3">
               </div>
             </div>
-
-            
-        
-        <button (click)="get()" class="btn btn-default">btn</button>
-        
-      
-    </form>
+            <button class="btn primary" (click)="salva()">Salvar</button>
+</form>
 </div>
 
-
- <table class="table table-small-font table-bordered table-striped table-hover">
-        <thead>
+<table class="table table-hover">
+           <thead> 
             <tr>
-                <th>Código</th>
-                <th>Descrição</th>
-                <th>Grupo</th>
-                <th>Subgrupo</th>
-                <th>Estoque</th>
-            </tr>    
-        </thead>
-        <tbody id="table">
-            <tr *ngFor = "let p of lista" >
-                 <td>{{ p.ccnpj}}</td>
-                 <td>{{ p.cdenom}}</td>
+                <th>nome</th>
+                <th>email</th>
+                <th>telefone</th>
+                <th>Delete</th>
             </tr>
-        </tbody>
+           </thead> 
+
+           <tbody >               
+               
+               <tr *ngFor= "let c of usuario" >
+                    <td>{{c.fields.ccnpj}}</td>
+
+               </tr>
+               
+           </tbody>
     </table>
-
-
-{{usuario}}
-
-
-
 
 
 
