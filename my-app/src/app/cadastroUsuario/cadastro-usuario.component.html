@@ -1,32 +1,59 @@
 
 <div class="container" >
-    <form  #UsuarioForms ="ngForm">
+  <form  [formGroup]="cadastroForm" (ngSubmit)="log()">
+     <div formGroupName="fields">
+     <div class="modal-header" id="divServico">
+         <button type="button" class="close" 
+         data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true" 
+             id="closeModal">&times;</span></button>
+         <h4 class="modal-title" 
+         id="myModalLabel" >Cadastro de Empresas</h4>
+    </div>
+
+    <div class="modal-body">
+
         <!--código de acesso--> 
-       <div class="form-group form-group-sm">
-              <label for="senha" class="control-label col-sm-2">Senha:</label>
+       <div class="form-group form-group-sm has-danger" id="">
+              <label for="senha"
+               class="control-label 
+               col-sm-2">Senha:</label>
               <div class="col-sm-4">
-            <input type="password" class="form-control" placeholder="Insira uma senha para acesso!" 
-            aria-describedby="sizing-addon3"
-            name="senha"
-            [(ngModel)]="usuario.senha"
-            >
+                    <input type="password" class="form-control" 
+                    placeholder="Insira uma senha para acesso!" 
+                    aria-describedby="sizing-addon3"
+                    name="senha"
+                    id="modalSenha"
+                    formControlName="senha"
+                    >
+                    
+                     <small class="form-text text-muted" 
+                     style="color: red"
+                     *ngIf="!cadastroForm.get('fields.senha').valid && cadastroForm.get('fields.senha').touched">
+                     Senha Invalida.</small>
               </div>
+
               <!--CNPJ-->
               <label for="cnpj" class="control-label col-sm-2">CNPJ:</label>
               <div class="col-sm-4">
-            <input type="text" class="form-control" placeholder="CNPJ da empresa " aria-describedby="sizing-addon3"
-            name="cpj" [(ngModel)]="usuario.ccnpj">
+            <input type="text" class="form-control" 
+                placeholder="99.999.999/9999-99 " 
+                appMascara="99.999.999/9999-99" 
+                aria-describedby="sizing-addon3"
+                name="ccpnj"
+                formControlName="ccnpj" >
               </div>
             </div>
 
                <!--razão social-->
             <div class="form-group form-group-sm">
-              <label for="razaoSocial" class="control-label col-sm-2">Razão Social:</label>
+              <label for="razaoSocial" 
+                class="control-label col-sm-2">Razão Social:</label>
               <div class="col-sm-10">
-            <input type="text" class="form-control" placeholder="Razão Social " aria-describedby="sizing-addon3"
-            name="cdenom"
-            [(ngModel)]="usuario.cdenom"
-            >
+            <input type="text" class="form-control" 
+              placeholder="Razão Social"
+                 aria-describedby="sizing-addon3"
+                name="cdenom">
               </div>
             </div>
             
@@ -34,32 +61,44 @@
             <div class="form-group form-group-sm">
               <label for="cep" class="control-label col-sm-2">CEP:</label>
               <div class="col-sm-3">
-            <input type="text" class="form-control" placeholder="CEP" aria-describedby="sizing-addon3">
+            <input type="text" class="form-control" 
+            placeholder="99999-999" 
+            appMascara="99999-999" 
+            aria-describedby="sizing-addon3" name="cep">
               </div>
               <label for="numero" class="control-label col-sm-2">N°:</label>
               <div class="col-sm-2">
-            <input type="text" class="form-control" placeholder="Número" aria-describedby="sizing-addon3">
+                 <input type="text" class="form-control" 
+                   placeholder="Número" 
+                   aria-describedby="sizing-addon3">
               </div>
             </div>
 
              <!--logradura-->
             <div class="form-group form-group-sm">
-              <label for="Logradoura" class="control-label col-sm-2">Logradoura:</label>
-              <div class="col-sm-3">
-            <input type="text" class="form-control" placeholder="Insirar uma logradoura" aria-describedby="sizing-addon3">
+                    <label for="Logradoura" class="control-label col-sm-2">Logradoura:</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" 
+                        placeholder="Insirar uma logradoura" 
+                        aria-describedby="sizing-addon3">
               </div>
+
               <!--complemento-->
               <label for="complento" class="control-label col-sm-2">complemento:</label>
-              <div class="col-sm-5">
-            <input type="text" class="form-control" placeholder="Complemento..." aria-describedby="sizing-addon3">
-              </div>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" 
+                    placeholder="Complemento..." 
+                    aria-describedby="sizing-addon3">
+                </div>
             </div>
 
             <!--bairro-->
             <div class="form-group form-group-sm">
               <label for="bairro" class="control-label col-sm-2">Bairro:</label>
               <div class="col-sm-10">
-            <input type="text" class="form-control" placeholder="Insira o Bairro..." aria-describedby="sizing-addon3">
+                <input type="text" class="form-control" 
+                placeholder="Insira o Bairro..." 
+                aria-describedby="sizing-addon3">
               </div>
             </div>
 
@@ -67,100 +106,113 @@
             <div class="form-group form-group-sm">
               <label for="codigo" class="control-label col-sm-2">Código da Cidade:</label>
               <div class="col-sm-2">
-            <input type="text" class="form-control" placeholder="Insira o código da cidade" aria-describedby="sizing-addon3">
+            <input type="text" class="form-control" 
+            placeholder="Insira o código da cidade"
+             aria-describedby="sizing-addon3">
               </div>
                <!--Cidade-->
                 <label for="cidade" class="control-label col-sm-1">Cidade:</label>
                     <div class="col-sm-3">
-                    <input type="text" class="form-control" placeholder="Insira o 
-                    nome da cidade" aria-describedby="sizing-addon3">
+                    <input type="text" class="form-control"
+                    placeholder="Insira o nome da cidade" 
+                    aria-describedby="sizing-addon3">
               </div>
                <!--Uf-->
               <label for="uf" class="control-label col-sm-1">UF:</label>
               <div class="col-sm-2">
-            <input type="text" class="form-control" placeholder="Uf" aria-describedby="sizing-addon3">
+            <input type="text" class="form-control" 
+                placeholder="Uf" 
+                aria-describedby="sizing-addon3"
+                formControlName="cidade">
               </div>
             </div>
     
-    <div class="container" id="checkboxCadastro">
-        <div class="row" id="divServico" >
-        <H6>SERVIÇOS A SEREM COTADOS</H6>
-    </div>
-        <div class="row">
-            <label><input type="checkbox" value="">Auditoria de Estoque</label>
-        </div>
-        <div class="row">
-            <label><input type="checkbox" value="">Analise de Balanço</label>
-        </div>
-        <div class="row">
-            <label><input type="checkbox" value="">Comparativo Fiscal x Contábil</label>
-        </div>
-        <div class="row">
-            <label><input type="checkbox" value="">Todos</label>
-        </div>
-    </div>
+   
 
-          <div class="well">
-            <label for="data" class="control-label col-sm-2">Periodo de:</label>
-                <div class="input-group date col-sm-3" data-provide="datepicker" id="data1" name="data">
-                    <input type="text" class="form-control">
-                    <div class="input-group-addon">
-                        <span class="glyphicon glyphicon-th"></span>
-                    </div>
-                </div>
+          <div class="well col-sm-12">
 
-                 <label for="data2" class="control-label col-sm-1">à:</label>
-                <div class="input-group date col-sm-3" data-provide="datepicker" id="data2" name="data2">
-                    <input type="text" class="form-control">
-                    <div class="input-group-addon">
-                        <span class="glyphicon glyphicon-th"></span>
-                    </div>
-                </div>
-
+                    <div class="container" id="checkboxCadastro">
+                        <div class="row" id="divServico" >
+                            <H6>SERVIÇOS A SEREM COTADOS</H6>
+                        </div>
+                        <div class="check">
+                        <div class="row" >
+                            <label><input type="checkbox" 
+                            formControlName="auditoria"
+                            [value]="auditoria">
+                            Auditoria de Estorque
+                            </label>
+                        </div>
+                        <div class="row" >
+                            <label><input type="checkbox" 
+                            formControlName="analise"
+                            [value]="analise">
+                            Analise de Balanco
+                            </label>
+                        </div>
+                        <div class="row" >
+                            <label><input type="checkbox" 
+                            formControlName="comparativo"
+                            [value]="comparativo">
+                            Comparatio Fiscal
+                            </label>
+                        </div>
+                        <div class="row" >
+                            <label><input type="checkbox" 
+                            formControlName="todos"
+                            [value]="todos">
+                            Todos
+                            </label>
+                        </div>
+                        
+                        </div>
+                 </div>
+            <div class="well">
+                     <div class="form-group ">
+                 <label for="dataPikaday2" class="control-label col-sm-2">Periodo:</label>
+                 <div class="col-sm-3">
+                    <input type="text" 
+                        class="form-control "
+                        id="dataPikaday"
+                        name="dataPikaday"
+                        placeholder="dd/mm/yyyy"
+                        DataPiker="dataPikaday"
+                        formControlName="dataPikaday">
+                 </div>
+                 <label for="dataPikaday2" class="control-label col-sm-2">à:</label>
+                 <div class="col-sm-3">
+                    <input type="text" 
+                        class="form-control "
+                        id="dataPikaday2"
+                        name="dataPikaday2"
+                        placeholder="dd/mm/yyyy"
+                        DataPiker="dataPikaday2"
+                        formControlName="dataPikaday2">
+                 </div>
                 
-            <script type="text/javascript">
-                    $('#data1').datepicker({
-                    format: 'dd/mm/yyyy'
-                });
-                 $('#data2').datepicker({
-                    format: 'dd/mm/yyyy'
-                });
-              </script>
-          </div>
+            </div>
+            </div>
+          
+
+           </div>
+             <div class="container"> 
+                <div style="right: 20px">
+                    <div class="row" id="divServico">
+                         <H6>USUÁRIO COM PERMIÇÃO DE ACOMPANHAMENTO</H6>
+                    </div>
+                </div>
+                  <!--usuario permissao cadastro-->
+                  <app-usuario-permissao></app-usuario-permissao>
+              </div>
+           
           <div class="calt"></div>
 
-    <div class="form-group form-group-sm">
-              <label for="bairro" class="control-label col-sm-5">Número Médio de Notas Emitidas Mensalmente:</label>
-              <div class="col-sm-3">
-            <input type="password" class="form-control" placeholder="" aria-describedby="sizing-addon3">
-              </div>
-            </div>
-            <button class="btn primary" (click)="salva()">Salvar</button>
+          <!-- btn salvar ou cancelar-->
+              <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" >Cancelar</button>
+                </div>
+        </div>
+    </div>
 </form>
 </div>
-
-<table class="table table-hover">
-           <thead> 
-            <tr>
-                <th>nome</th>
-                <th>email</th>
-                <th>telefone</th>
-                <th>Delete</th>
-            </tr>
-           </thead> 
-
-           <tbody >               
-               
-               <tr *ngFor= "let c of usuario" >
-                    <td>{{c.fields.ccnpj}}</td>
-
-               </tr>
-               
-           </tbody>
-    </table>
-
-
-
-
-
-

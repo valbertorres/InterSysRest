@@ -1,24 +1,36 @@
 <div class="container">
+  <div id="container">
 <h1 class="h1Login">Login do Usuário</h1>
 <div class="jumbotron">
   <div class="container">
-     <form class="form-horizontal">
-       <!--cnpj-->
-          <div class="form-group">
+     <form class="form-horizontal"  [formGroup]="cadastroForm" (ngSubmit)="log()">
+       
+          <!--cnpj-->
+          <div class="form-group" formGroupName="fields">
               <label for="cnpj" class="control-label col-sm-3">CNPJ da Empresa:</label>
-              <div class="col-sm-3">
-                <input type="text" class="form-control" name="Cnpj">
+              <div class="col-sm-4">
+                <input type="text" 
+                class="form-control" 
+                formControlName="ccnpj"
+                placeholder="99.999.999/9999-99"
+                appMascara = "99.999.999/9999-99"
+                 >
+                
               </div>
-              <div class="col-sm-5">
-                <input type="text" class="form-control" name="suvCnpj" disabled>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" name="subCnpj" disabled>
               </div>
             </div>
-            
+             
+                <!--<div class="alert alert-danger" role="alert" [hidden]="verficaCnpj.valid || verficaCnpj.pristine">
+                 <strong>CNPJ</strong> invalido! Insira um CNPJ valido!
+                </div> -->
+                  
             <!--serviço-->
             <div class="form-group">
                    <label for="exampleSelect1" class="control-label col-sm-3">Serviço:</label>
                     <div class="col-sm-8">
-                      <select class="form-control" id="exampleSelect1">
+                      <select class="form-control" id="exampleSelect1" >
                       <option></option>
                     </select>
                     </div>
@@ -27,25 +39,36 @@
             <!--cpf do usuario-->
             <div class="form-group">
               <label for="cnpj" class="control-label col-sm-3">CPF do Usuário:</label>
-              <div class="col-sm-3">
-                <input type="text" class="form-control" name="cpf">
+              <div class="col-sm-4">
+                <input type="text" 
+                class="form-control" 
+                name="cpf"
+                 formControlName="cpf"
+                placeholder="999.999.999-99"
+                appMascara="999.999.999-99">
               </div>
-              <div class="col-sm-5">
+
+              <div class="col-sm-4">
                 <input type="text" class="form-control" name="subCpf" disabled>
               </div>
             </div>
+
             <!--senha-->
+
             <div class="form-group">
               <label for="senha" class="control-label col-sm-3">Senha de Acesso:</label>
               <div class="col-sm-3">
-                <input type="password" class="form-control" name="senha">
+                <input type="password"
+                 class="form-control" 
+                 name="senha" 
+                 formControlName="senha">
               </div>
             </div>
             
             <div class="form-group"> 
               <div class="col-md-16 text-center">
-                  <button class="btn btn-primary btn-lg" type="submit" >Acessar</button>
-                  <button class="btn btn-default btn-lg" >Esqueci Minha Senha</button>
+                  <button class="btn btn-primary btn-lg" type="submit"  >Acessar</button>
+                  <button class="btn btn-default btn-lg" (click)="validar()" >Esqueci Minha Senha</button>
                  
                   <!-- Button trigger modal -->
                     <button type="button" id="mymodal" class="btn btn-default btn-lg" data-toggle="modal" 
@@ -53,32 +76,20 @@
                     Fazer Cadastro
                     </button>
             </div>
-            </div> 
+            </div>  
 
             <!-- Modal -->
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel" >Cadastro de Empresas</h4>
-                </div>
-                <div class="modal-body">
+
                     <cadastro-usuario></cadastro-usuario>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Salvar</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                </div>
+                
                 </div>
             </div>
             </div>   
-
       </form>
   </div>
 </div>
 </div>
-
-      
- 
-
+</div>
